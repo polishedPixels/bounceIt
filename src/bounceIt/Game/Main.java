@@ -14,6 +14,7 @@ public class Main {
 
 	private static void render() {
 		glClear(GL_COLOR_BUFFER_BIT);
+		
 
 	}
 
@@ -22,7 +23,6 @@ public class Main {
 	}
 
 	private static void cleanUp(boolean asCrash) {
-
 		Display.destroy();
 		System.exit(asCrash ? 1 : 0);
 	}
@@ -43,16 +43,13 @@ public class Main {
 
 	}
 
-	private static void updatePerStep() {
-
-	}
+	
 
 	private static void enterGameLoop() {
 		while (!Display.isCloseRequested()) {
 
 			render();
 			input();
-			updatePerStep();
 			update();
 
 		}
