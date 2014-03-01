@@ -6,6 +6,7 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
+
 public class Main {
 
 	public static final String WINDOW_TITLE = "Sample Program";
@@ -40,6 +41,8 @@ public class Main {
 	private static void update() {
 		Display.update();
 		Display.sync(Sync);
+		
+		
 
 	}
 
