@@ -2,7 +2,6 @@ package bounceIt.Game.Obj;
 
 import static org.lwjgl.opengl.GL11.GL_QUADS;
 import static org.lwjgl.opengl.GL11.glBegin;
-import static org.lwjgl.opengl.GL11.glColor3d;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glTexCoord2d;
 import static org.lwjgl.opengl.GL11.glVertex2d;
@@ -13,7 +12,6 @@ public class Ball {
 
 	double posX, posY;
 	double velX, velY;
-	Tile curTile;
 	int type; // 0 = green
 	int dir; // 0 = N, 1 = E, 2 = S, 3 = W
 	final double size = 16;
@@ -26,8 +24,6 @@ public class Ball {
 		type = Type;
 		colPoint = new Point(X, Y);
 
-		curTile = TileMap.getTilefromDouble(X, Y);
-
 		velX = 1;
 		velY = 1;
 
@@ -35,8 +31,24 @@ public class Ball {
 	public void Update() {
 		physics();
 		colUpdate();
+		posCorrection();
 	}
 
+	private void posCorrection() {
+		System.out.println(colPoint.curTile.type);
+		if (colPoint.curTile.type == 0) {
+			if (dir == 0 || dir == 2) {
+				double x1 = (colPoint.curTile.posX * TileMap.tileSize) + TileMap.tileSize/2 ;
+				posX = x1;
+			}
+			if (dir == 1 || dir == 3) {
+				double y1 = (colPoint.curTile.posY * TileMap.tileSize) + TileMap.tileSize/2 ;
+				posY = y1;
+
+			}
+		}
+
+	}
 	private void physics() {
 
 		switch (dir) {
