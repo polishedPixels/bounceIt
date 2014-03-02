@@ -81,6 +81,44 @@ public class Ball {
 				default :
 					break;
 			}
+		} else if (colPoint.curTile.type == 2) {
+			switch (dir) {
+				case 0 :
+					dir = 1;
+					break;
+				case 1 :
+					dir = 0;
+					break;
+
+				case 2 :
+					dir = 3;
+					break;
+
+				case 3 :
+					dir = 2;
+					break;
+
+				default :
+					break;
+			}
+		} else if (colPoint.curTile.type == 3) {
+			switch (dir) {
+				case 0 :
+					dir = 3;
+					break;
+				case 1 :
+					dir = 2;
+					break;
+				case 2 :
+					dir = 1;
+					break;
+				case 3 :
+					dir = 0;
+					break;
+
+				default :
+					break;
+			}
 		}
 	}
 
@@ -95,15 +133,15 @@ public class Ball {
 		}
 		glBegin(GL_QUADS);
 		{
-			glTexCoord2d(0,0); 
-			glVertex2d(posX - size/2, posY - size/2);
-			glTexCoord2d(1,0); 
-			glVertex2d(posX + size/2, posY - size/2);
-			glTexCoord2d(1,1); 
-			glVertex2d(posX + size/2, posY + size/2);
-			glTexCoord2d(0,1); 
-			glVertex2d(posX - size/2, posY + size/2);
-		
+			glTexCoord2d(0, 0);
+			glVertex2d(posX - size / 2, posY - size / 2);
+			glTexCoord2d(1, 0);
+			glVertex2d(posX + size / 2, posY - size / 2);
+			glTexCoord2d(1, 1);
+			glVertex2d(posX + size / 2, posY + size / 2);
+			glTexCoord2d(0, 1);
+			glVertex2d(posX - size / 2, posY + size / 2);
+
 		}
 		glEnd();
 	}

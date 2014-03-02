@@ -25,15 +25,16 @@ public class Tile {
 
 		switch (type) {
 			case 0 :
-				//open
 				TextureHandler.getSprite("open").texture.bind();
 				break;
 			case 1 :
-				//closed
 				TextureHandler.getSprite("closed").texture.bind();
 				break;
 			case 2:
-				
+				TextureHandler.getSprite("posSlope").texture.bind();
+				break;
+			case 3:
+				TextureHandler.getSprite("negSlope").texture.bind();
 				break;
 			default :
 				//no valid type

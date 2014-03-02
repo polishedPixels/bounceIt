@@ -84,6 +84,7 @@ public class Main {
 		}
 	}
 	private static void setUpTextures(){
+		
 		TextureHandler.loadAndPutSprite("open");
 		TextureHandler.loadAndPutSprite("closed");
 		TextureHandler.loadAndPutSprite("negSlope");
