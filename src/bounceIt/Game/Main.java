@@ -6,6 +6,7 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
+import bounceIt.Game.Tiles.TileMap;
 
 public class Main {
 
@@ -15,8 +16,8 @@ public class Main {
 
 	private static void render() {
 		glClear(GL_COLOR_BUFFER_BIT);
-		
 
+		TileMap.draw();
 	}
 
 	private static void input() {
@@ -41,12 +42,8 @@ public class Main {
 	private static void update() {
 		Display.update();
 		Display.sync(Sync);
-		
-		
 
 	}
-
-	
 
 	private static void enterGameLoop() {
 		while (!Display.isCloseRequested()) {
@@ -59,7 +56,7 @@ public class Main {
 	}
 
 	private static void setUpObjects() {
-
+		TileMap.Init();
 	}
 
 	private static void setUpDisplay() {
