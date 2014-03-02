@@ -1,23 +1,39 @@
 package bounceIt.Game;
 
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_BLEND;
+import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
+import static org.lwjgl.opengl.GL11.GL_MODELVIEW;
+import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
+import static org.lwjgl.opengl.GL11.GL_PROJECTION;
+import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
+import static org.lwjgl.opengl.GL11.glBlendFunc;
+import static org.lwjgl.opengl.GL11.glClear;
+import static org.lwjgl.opengl.GL11.glEnable;
+import static org.lwjgl.opengl.GL11.glMatrixMode;
+import static org.lwjgl.opengl.GL11.glOrtho;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
-import bounceIt.Game.Tiles.TileMap;
+import bounceIt.Game.Obj.Ball;
+import bounceIt.Game.Obj.TileMap;
+import bounceIt.Game.Time.Time;
 
 public class Main {
 
 	public static final String WINDOW_TITLE = "Sample Program";
 	public static final int[] WINDOW_DIMENSIONS = {800, 600};
 	public static final int Sync = 60;
+	
+	public static Ball greenBall;
 
 	private static void render() {
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		TileMap.draw();
+		greenBall.draw();
 	}
 
 	private static void input() {
@@ -42,21 +58,26 @@ public class Main {
 	private static void update() {
 		Display.update();
 		Display.sync(Sync);
+		
+		greenBall.Update();
+		
+		System.out.println(Time.getDelta());
 
 	}
 
 	private static void enterGameLoop() {
 		while (!Display.isCloseRequested()) {
-
+			Time.lastFrame = Time.getTime();
 			render();
 			input();
 			update();
-
+			Time.getDelta();
 		}
 	}
 
 	private static void setUpObjects() {
 		TileMap.Init();
+		greenBall = new Ball(100, 100, 0);
 	}
 
 	private static void setUpDisplay() {

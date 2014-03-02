@@ -1,5 +1,4 @@
-package bounceIt.Game.Tiles;
-
+package bounceIt.Game.Obj;
 
 public class TileMap {
 
@@ -25,6 +24,19 @@ public class TileMap {
 
 			}
 		}
+	}
+	public static Tile getTilefromArray(int X, int Y) {
+
+		return tileMap[X][Y];
+
+	}
+	public static Tile getTilefromDouble(double X, double Y) {
+
+		int x = (int) (X / tileSize);
+		int y = (int) (Y / tileSize);
+
+		return tileMap[x][y];
+
 	}
 
 }
