@@ -16,7 +16,8 @@ public class Level {
 						  {1,0,0,0,0,0,0,0,0,1}, 
 						  {1,3,0,0,0,0,0,0,2,1}, 
 						  {1,1,1,1,1,1,1,1,1,1}}; 
-												
+	public static Level[] levels = new Level[2];											
+	public boolean complete = false;
 	
 	public static void load() {
 		
