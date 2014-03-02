@@ -17,6 +17,7 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
+import bounceIt.Game.Levels.Level;
 import bounceIt.Game.Obj.Ball;
 import bounceIt.Game.Obj.TileMap;
 import bounceIt.Game.Time.Time;
@@ -24,7 +25,7 @@ import bounceIt.Game.Time.Time;
 public class Main {
 
 	public static final String WINDOW_TITLE = "Sample Program";
-	public static final int[] WINDOW_DIMENSIONS = {800, 600};
+	public static final int[] WINDOW_DIMENSIONS = {600, 600};
 	public static final int Sync = 60;
 	
 	public static Ball greenBall;
@@ -47,7 +48,7 @@ public class Main {
 
 	private static void setUpMatrices() {
 		glMatrixMode(GL_PROJECTION);
-		glOrtho(0, 640, 480, 0, 1, -1);
+		glOrtho(0, 700, 700, 0, 1, -1);
 		glMatrixMode(GL_MODELVIEW);
 		glEnable(GL_TEXTURE_2D);
 		glEnable(GL_BLEND);
@@ -61,8 +62,6 @@ public class Main {
 		
 		greenBall.Update();
 		
-		System.out.println(Time.getDelta());
-
 	}
 
 	private static void enterGameLoop() {
@@ -77,6 +76,7 @@ public class Main {
 
 	private static void setUpObjects() {
 		TileMap.Init();
+		Level.load();
 		greenBall = new Ball(100, 100, 0);
 	}
 
