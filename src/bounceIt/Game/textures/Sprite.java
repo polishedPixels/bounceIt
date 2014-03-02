@@ -1,19 +1,29 @@
 package bounceIt.Game.textures;
 
+
+
 import org.newdawn.slick.opengl.Texture;
 
+import bounceIt.Game.Obj.Point;
+
 public class Sprite {
-	
+
 	public Texture texture;
-	public int types;
-	public int frames;
+	int x;
+	int y;
+
+	public Point[][] textTiles;
 
 	public Sprite(Texture text) {
 
 		texture = text;
 		try {
-			types = texture.getImageHeight() / TextureHandler.textSize;
-			frames = texture.getImageWidth() / TextureHandler.textSize;
+			x = texture.getImageHeight() / TextureHandler.textSize;
+			y = texture.getImageWidth() / TextureHandler.textSize;
+
+			textTiles = new Point[x][y];
+
+			
 
 		} catch (Exception e) {
 

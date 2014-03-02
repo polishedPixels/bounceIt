@@ -4,13 +4,15 @@ import static org.lwjgl.opengl.GL11.GL_QUADS;
 import static org.lwjgl.opengl.GL11.glBegin;
 import static org.lwjgl.opengl.GL11.glColor3d;
 import static org.lwjgl.opengl.GL11.glEnd;
+import static org.lwjgl.opengl.GL11.glTexCoord2d;
 import static org.lwjgl.opengl.GL11.glVertex2d;
 import bounceIt.Game.Obj.TileMap;
+import bounceIt.Game.textures.TextureHandler;
 
 public class Tile {
 
 	int posX, posY;
-	int type;// 0 = open, 1 = closed
+	int type;
 	double size;
 
 	public Tile(int X, int Y, int Type) {
@@ -23,21 +25,31 @@ public class Tile {
 
 		switch (type) {
 			case 0 :
-				glColor3d(0, 0, 0);
+				//open
+				TextureHandler.getSprite("open").texture.bind();
 				break;
 			case 1 :
-				glColor3d(1, 1, 1);
+				//closed
+				TextureHandler.getSprite("closed").texture.bind();
+				break;
+			case 2:
+				
 				break;
 			default :
+				//no valid type
 				System.err.println(type + " is not a valid Tile Type");
 				glColor3d(0.831, 0, 1);
 				break;
 		}
 		glBegin(GL_QUADS);
 		{
+			glTexCoord2d(0,0); 
 			glVertex2d((posX * size), (posY * size));
+			glTexCoord2d(1,0); 
 			glVertex2d((posX * size) + size, (posY * size));
+			glTexCoord2d(1,1); 
 			glVertex2d((posX * size) + size, (posY * size) + size);
+			glTexCoord2d(0,1); 
 			glVertex2d((posX * size), (posY * size) + size);
 
 		}

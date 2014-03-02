@@ -5,13 +5,17 @@ import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
 import static org.lwjgl.opengl.GL11.GL_MODELVIEW;
 import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
 import static org.lwjgl.opengl.GL11.GL_PROJECTION;
+import static org.lwjgl.opengl.GL11.GL_QUADS;
 import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
+import static org.lwjgl.opengl.GL11.glBegin;
 import static org.lwjgl.opengl.GL11.glBlendFunc;
 import static org.lwjgl.opengl.GL11.glClear;
 import static org.lwjgl.opengl.GL11.glEnable;
+import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glMatrixMode;
 import static org.lwjgl.opengl.GL11.glOrtho;
+import static org.lwjgl.opengl.GL11.*;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
@@ -21,6 +25,8 @@ import bounceIt.Game.Levels.Level;
 import bounceIt.Game.Obj.Ball;
 import bounceIt.Game.Obj.TileMap;
 import bounceIt.Game.Time.Time;
+import bounceIt.Game.textures.Sprite;
+import bounceIt.Game.textures.TextureHandler;
 
 public class Main {
 
@@ -35,6 +41,10 @@ public class Main {
 
 		TileMap.draw();
 		greenBall.draw();
+		
+		Sprite temp = TextureHandler.getSprite("spritesheet");
+		
+	
 	}
 
 	private static void input() {
@@ -73,6 +83,13 @@ public class Main {
 			Time.getDelta();
 		}
 	}
+	private static void setUpTextures(){
+		TextureHandler.loadAndPutSprite("open");
+		TextureHandler.loadAndPutSprite("closed");
+		TextureHandler.loadAndPutSprite("negSlope");
+		TextureHandler.loadAndPutSprite("posSlope");
+		TextureHandler.loadAndPutSprite("greenBall");
+	}
 
 	private static void setUpObjects() {
 		TileMap.Init();
@@ -96,6 +113,7 @@ public class Main {
 		setUpDisplay();
 		setUpObjects();
 		setUpMatrices();
+		setUpTextures();
 		enterGameLoop();
 		cleanUp(false);
 	}

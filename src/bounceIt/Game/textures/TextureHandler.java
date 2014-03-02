@@ -44,13 +44,13 @@ public class TextureHandler {
 
 	}
 
-	public static void addSprite(String key, Sprite sprite) {
+	private static void addSprite(String key, Sprite sprite) {
 
 		sprites.put(key, sprite);
 
 	}
 
-	public static Sprite loadSpritePNG(String key)
+	private static Sprite loadSpritePNG(String key)
 			throws FileNotFoundException {
 
 		Texture tempText;
