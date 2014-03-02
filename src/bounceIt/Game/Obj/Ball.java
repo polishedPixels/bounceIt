@@ -26,7 +26,23 @@ public class Ball {
 
 		velX = 1;
 		velY = 1;
+		Tile start = null;
+		
+	
+		for (int x = 0; x < TileMap.worldSize[0]; x++) {
+			for (int y = 0; y < TileMap.worldSize[1]; y++) {
 
+				if(TileMap.tileMap[x][y].type == 4){
+					start = TileMap.tileMap[x][y];
+				}
+
+			}
+		}
+		
+		posX = (start.posX * TileMap.tileSize) - TileMap.tileSize/2;
+		posY = (start.posY * TileMap.tileSize) + TileMap.tileSize/2;
+		
+		dir = 3;
 	}
 	public void Update() {
 		physics();
@@ -35,14 +51,16 @@ public class Ball {
 	}
 
 	private void posCorrection() {
-		System.out.println(colPoint.curTile.type);
+
 		if (colPoint.curTile.type == 0) {
 			if (dir == 0 || dir == 2) {
-				double x1 = (colPoint.curTile.posX * TileMap.tileSize) + TileMap.tileSize/2 ;
+				double x1 = (colPoint.curTile.posX * TileMap.tileSize)
+						+ TileMap.tileSize / 2;
 				posX = x1;
 			}
 			if (dir == 1 || dir == 3) {
-				double y1 = (colPoint.curTile.posY * TileMap.tileSize) + TileMap.tileSize/2 ;
+				double y1 = (colPoint.curTile.posY * TileMap.tileSize)
+						+ TileMap.tileSize / 2;
 				posY = y1;
 
 			}
@@ -93,7 +111,28 @@ public class Ball {
 				default :
 					break;
 			}
-		} else if (colPoint.curTile.type == 2) {
+		}else if (colPoint.curTile.type == 4 && type == 0) {
+			// change direction
+			switch (dir) {
+				case 0 :
+					dir = 2;
+					break;
+				case 1 :
+					dir = 3;
+					break;
+
+				case 2 :
+					dir = 0;
+					break;
+
+				case 3 :
+					dir = 1;
+					break;
+
+				default :
+					break;
+			}
+		}  else if (colPoint.curTile.type == 2) {
 			switch (dir) {
 				case 0 :
 					dir = 1;

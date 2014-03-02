@@ -58,7 +58,7 @@ public class Main {
 
 	private static void setUpMatrices() {
 		glMatrixMode(GL_PROJECTION);
-		glOrtho(0, 700, 700, 0, 1, -1);
+		glOrtho(0, 640, 640, 0, 1, -1);
 		glMatrixMode(GL_MODELVIEW);
 		glEnable(GL_TEXTURE_2D);
 		glEnable(GL_BLEND);
@@ -90,12 +90,13 @@ public class Main {
 		TextureHandler.loadAndPutSprite("negSlope");
 		TextureHandler.loadAndPutSprite("posSlope");
 		TextureHandler.loadAndPutSprite("greenBall");
+		TextureHandler.loadAndPutSprite("greenStart");
 	}
 
 	private static void setUpObjects() {
 		TileMap.Init();
 		Level.load();
-		greenBall = new Ball(100, 100, 0);
+		greenBall = new Ball(100, 200, 0);
 	}
 
 	private static void setUpDisplay() {

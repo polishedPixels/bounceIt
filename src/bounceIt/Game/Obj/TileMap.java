@@ -1,6 +1,6 @@
 package bounceIt.Game.Obj;
 
-public class TileMap {
+public abstract class TileMap {
 
 	public static final double tileSize = 64;
 	public static final int[] worldSize = {10, 10};

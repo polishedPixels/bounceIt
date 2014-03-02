@@ -10,7 +10,7 @@ public class Level {
 						  {1,2,0,0,0,0,0,0,3,1}, 
 						  {1,0,0,0,0,0,0,0,0,1}, 
 						  {1,0,0,0,0,0,0,0,0,1}, 
-						  {1,0,0,0,0,0,0,0,0,1}, 
+						  {1,3,0,0,0,0,0,0,0,4}, 
 						  {1,0,0,0,0,0,0,0,0,1}, 
 						  {1,0,0,0,0,0,0,0,0,1}, 
 						  {1,0,0,0,0,0,0,0,0,1}, 
@@ -22,7 +22,7 @@ public class Level {
 		
 		for (int x = 0; x < TileMap.worldSize[0]; x++) {
 			for (int y = 0; y < TileMap.worldSize[1]; y++) {
-				TileMap.tileMap[x][y] = new Tile(x, y, map[x][y]);
+				TileMap.tileMap[y][x] = new Tile(y, x, map[x][y]);
 			}
 
 		}
