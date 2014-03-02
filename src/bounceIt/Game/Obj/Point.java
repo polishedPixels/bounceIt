@@ -15,6 +15,7 @@ public class Point {
 		posY = Y;
 		
 		curTile = TileMap.getTilefromDouble(X, Y);
+		
 	}
 	
 }
