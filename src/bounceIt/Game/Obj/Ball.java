@@ -42,7 +42,7 @@ public class Ball {
 		posX = (start.posX * TileMap.tileSize) - TileMap.tileSize/2;
 		posY = (start.posY * TileMap.tileSize) + TileMap.tileSize/2;
 		
-		dir = 3;
+		dir = 0;
 	}
 	public void Update() {
 		physics();
