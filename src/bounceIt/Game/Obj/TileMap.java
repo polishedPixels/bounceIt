@@ -32,11 +32,14 @@ public abstract class TileMap {
 	}
 	public static Tile getTilefromDouble(double X, double Y) {
 
-		int x = (int) (X / tileSize);
-		int y = (int) (Y / tileSize);
+		int px = (int) (X / tileSize);
+		int py = (int) (Y / tileSize);
 
-		return tileMap[x][y];
+		return tileMap[px][py];
 
+	}
+	public static void setTile(int X,int Y,int ChangeTo){
+		tileMap[X][Y] = new Tile(X, Y, ChangeTo);
 	}
 
 }

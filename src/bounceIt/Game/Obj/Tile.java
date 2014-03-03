@@ -11,9 +11,9 @@ import bounceIt.Game.textures.TextureHandler;
 
 public class Tile {
 
-	int posX, posY;
-	int type;
-	double size;
+	public int posX, posY;
+	public int type;
+	public double size;
 
 	public Tile(int X, int Y, int Type) {
 		posX = X;

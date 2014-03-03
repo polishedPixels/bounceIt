@@ -3,11 +3,13 @@ package bounceIt.Game;
 import static org.lwjgl.opengl.GL11.*;
 
 import org.lwjgl.LWJGLException;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 import bounceIt.Game.Levels.Level;
 import bounceIt.Game.Obj.Ball;
+import bounceIt.Game.Obj.Tile;
 import bounceIt.Game.Obj.TileMap;
 import bounceIt.Game.Time.Time;
 import bounceIt.Game.textures.TextureHandler;
@@ -15,9 +17,9 @@ import bounceIt.Game.textures.TextureHandler;
 public class Main {
 
 	public static final String WINDOW_TITLE = "Sample Program";
-	public static final int[] WINDOW_DIMENSIONS = {600, 600};
+	public static final int[] WINDOW_DIMENSIONS = {640, 640};
 	public static final int Sync = 60;
-	
+
 	public static Ball greenBall;
 
 	private static void render() {
@@ -25,12 +27,11 @@ public class Main {
 
 		TileMap.draw();
 		greenBall.draw();
-		
-	
+
 	}
 
 	private static void input() {
-
+		mouseCheck();
 	}
 
 	private static void cleanUp(boolean asCrash) {
@@ -45,16 +46,15 @@ public class Main {
 		glEnable(GL_TEXTURE_2D);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		
 
 	}
 
 	private static void update() {
 		Display.update();
 		Display.sync(Sync);
-		
+
 		greenBall.Update();
-		
+
 	}
 
 	private static void enterGameLoop() {
@@ -66,8 +66,8 @@ public class Main {
 			Time.getDelta();
 		}
 	}
-	private static void setUpTextures(){
-		
+	private static void setUpTextures() {
+
 		TextureHandler.loadAndPutSprite("open");
 		TextureHandler.loadAndPutSprite("closed");
 		TextureHandler.loadAndPutSprite("negSlope");
@@ -91,6 +91,33 @@ public class Main {
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 			cleanUp(true);
+		}
+	}
+	private static void mouseCheck() {
+		double posX = Mouse.getX();
+		double posY = WINDOW_DIMENSIONS[1]- Mouse.getY();
+		
+		Tile mouseTile = TileMap.getTilefromDouble(posX, posY);
+		int tileX = mouseTile.posX;
+		int tileY = mouseTile.posY;
+
+		System.out.println(mouseTile.type);
+		while (Mouse.next()) {
+			if (Mouse.getEventButtonState()) {
+				if (Mouse.isButtonDown(0)) {
+					switch (mouseTile.type) {
+						case 2 :
+							TileMap.setTile(mouseTile.posX, mouseTile.posY, 3);
+							break;
+						case 3 :
+							TileMap.setTile(mouseTile.posX, mouseTile.posY, 2);
+							break;
+
+						default :
+							break;
+					}
+				}
+			}
 		}
 	}
 
