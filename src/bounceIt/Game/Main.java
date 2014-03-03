@@ -21,6 +21,7 @@ public class Main {
 	public static final int Sync = 60;
 
 	public static Ball greenBall;
+	public static Level curLevel;
 
 	private static void render() {
 		glClear(GL_COLOR_BUFFER_BIT);
@@ -74,11 +75,12 @@ public class Main {
 		TextureHandler.loadAndPutSprite("posSlope");
 		TextureHandler.loadAndPutSprite("greenBall");
 		TextureHandler.loadAndPutSprite("greenStart");
+		TextureHandler.loadAndPutSprite("orangeStart");
 	}
 
 	private static void setUpObjects() {
 		TileMap.Init();
-		Level.load();
+		Level.load(Level.map1);
 		greenBall = new Ball(100, 200, 0);
 	}
 
@@ -95,13 +97,16 @@ public class Main {
 	}
 	private static void mouseCheck() {
 		double posX = Mouse.getX();
-		double posY = WINDOW_DIMENSIONS[1]- Mouse.getY();
+		double posY = WINDOW_DIMENSIONS[1] - Mouse.getY();
 		
-		Tile mouseTile = TileMap.getTilefromDouble(posX, posY);
-		int tileX = mouseTile.posX;
-		int tileY = mouseTile.posY;
 
-		System.out.println(mouseTile.type);
+		Tile mouseTile;
+		try {
+			mouseTile = TileMap.getTilefromDouble(posX, posY);
+		} catch (Exception e) {
+			mouseTile = TileMap.getTilefromArray(0, 0);
+		}
+		
 		while (Mouse.next()) {
 			if (Mouse.getEventButtonState()) {
 				if (Mouse.isButtonDown(0)) {

@@ -5,6 +5,8 @@ import static org.lwjgl.opengl.GL11.glBegin;
 import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glTexCoord2d;
 import static org.lwjgl.opengl.GL11.glVertex2d;
+import bounceIt.Game.Main;
+import bounceIt.Game.Levels.Level;
 import bounceIt.Game.Time.Time;
 import bounceIt.Game.textures.TextureHandler;
 
@@ -16,6 +18,7 @@ public class Ball {
 	int dir; // 0 = N, 1 = E, 2 = S, 3 = W
 	final double size = 16;
 	Point colPoint;
+	Tile startTile = null;
 
 	public Ball(double X, double Y, int Type) {
 
@@ -26,28 +29,30 @@ public class Ball {
 
 		velX = 1;
 		velY = 1;
-		Tile start = null;
-		
-	
+
 		for (int x = 0; x < TileMap.worldSize[0]; x++) {
 			for (int y = 0; y < TileMap.worldSize[1]; y++) {
 
-				if(TileMap.tileMap[x][y].type == 4){
-					start = TileMap.tileMap[x][y];
+				if (TileMap.tileMap[x][y].type == 4) {
+					startTile = TileMap.tileMap[x][y];
 				}
 
 			}
 		}
-		
-		posX = (start.posX * TileMap.tileSize) - TileMap.tileSize/2;
-		posY = (start.posY * TileMap.tileSize) + TileMap.tileSize/2;
-		
+
+		resetBall();
+
 		dir = 0;
 	}
 	public void Update() {
 		physics();
 		colUpdate();
 		posCorrection();
+	}
+	private void resetBall() {
+		dir = 3;
+		posX = (startTile.posX * TileMap.tileSize) - TileMap.tileSize / 2;
+		posY = (startTile.posY * TileMap.tileSize) + TileMap.tileSize / 2;
 	}
 
 	private void posCorrection() {
@@ -111,7 +116,7 @@ public class Ball {
 				default :
 					break;
 			}
-		}else if (colPoint.curTile.type == 4 && type == 0) {
+		} else if (colPoint.curTile.type == 4 && type == 0) {
 			// change direction
 			switch (dir) {
 				case 0 :
@@ -132,7 +137,7 @@ public class Ball {
 				default :
 					break;
 			}
-		}  else if (colPoint.curTile.type == 2) {
+		} else if (colPoint.curTile.type == 2) {
 			switch (dir) {
 				case 0 :
 					dir = 1;
@@ -170,6 +175,9 @@ public class Ball {
 				default :
 					break;
 			}
+		} else if (colPoint.curTile.type == 5) {
+			resetBall();
+			Level.load(Level.map1);
 		}
 	}
 

@@ -39,6 +39,9 @@ public class Tile {
 			case 4: 
 				TextureHandler.getSprite("greenStart").texture.bind();
 				break;
+			case 5: 
+				TextureHandler.getSprite("orangeStart").texture.bind();
+				break;
 			default :
 				//no valid type
 				System.err.println(type + " is not a valid Tile Type");
