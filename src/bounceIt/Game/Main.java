@@ -80,8 +80,12 @@ public class Main {
 
 	private static void setUpObjects() {
 		TileMap.Init();
-		Level.load(Level.map1);
+		levelSetUP();
+		Level.load(0);
 		greenBall = new Ball(100, 200, 0);
+	}
+	private static void levelSetUP() {
+		Level.levels[0] = new Level();
 	}
 
 	private static void setUpDisplay() {

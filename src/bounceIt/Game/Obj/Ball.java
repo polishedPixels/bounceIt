@@ -177,7 +177,7 @@ public class Ball {
 			}
 		} else if (colPoint.curTile.type == 5) {
 			resetBall();
-			Level.load(Level.map1);
+			Level.load(0);
 		}
 	}
 
