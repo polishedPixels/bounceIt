@@ -16,6 +16,7 @@ public class Level {
 						  		  {1,0,2,0,0,0,2,0,0,1}, 
 						  		  {1,2,0,0,0,0,0,3,0,1}, 
 						  		  {1,1,1,1,1,1,1,1,1,1}}; 
+	
 	public static int[][] map2 = {{1,1,1,1,1,1,1,1,1,1}, 
   								  {1,0,0,0,0,0,0,0,0,1}, 
   								  {1,0,0,0,0,0,0,0,0,1}, 
@@ -27,6 +28,7 @@ public class Level {
   								  {1,0,0,0,0,0,0,0,0,1}, 
   								  {1,1,1,1,1,1,1,1,1,1}}; 
 	public static int levelNum;
+	public static int curLevelIndex = 0;
 	public static int[/*X*/][/*Y*/][/*lvlIndex*/] levels = new int[TileMap.worldSize[0]][TileMap.worldSize[1]][2];										
 	
 	public static void levelSetUp(int levelnum){
