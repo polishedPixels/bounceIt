@@ -80,12 +80,9 @@ public class Main {
 
 	private static void setUpObjects() {
 		TileMap.Init();
-		levelSetUP();
+		Level.levelSetUp(2);
 		Level.load(0);
 		greenBall = new Ball(100, 200, 0);
-	}
-	private static void levelSetUP() {
-		Level.levels[0] = new Level();
 	}
 
 	private static void setUpDisplay() {
@@ -102,7 +99,6 @@ public class Main {
 	private static void mouseCheck() {
 		double posX = Mouse.getX();
 		double posY = WINDOW_DIMENSIONS[1] - Mouse.getY();
-		
 
 		Tile mouseTile;
 		try {
@@ -110,7 +106,7 @@ public class Main {
 		} catch (Exception e) {
 			mouseTile = TileMap.getTilefromArray(0, 0);
 		}
-		
+
 		while (Mouse.next()) {
 			if (Mouse.getEventButtonState()) {
 				if (Mouse.isButtonDown(0)) {

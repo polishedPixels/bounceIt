@@ -6,30 +6,67 @@ import bounceIt.Game.Obj.TileMap;
 public class Level {
 
 	//must be same size as TileMap.tileMap
-	public int[][] map = 		{{1,1,1,1,1,1,1,1,1,1}, 
-						  		{1,2,0,0,0,0,0,0,2,1}, 
-						  		{1,0,3,0,0,0,0,2,0,1}, 
-						  		{1,0,0,2,0,0,3,0,0,1}, 
-						  		{1,0,0,0,2,3,0,0,0,4}, 
-						  		{1,0,0,0,2,0,0,0,0,5}, 
-						  		{1,0,0,3,0,2,0,0,0,1}, 
-						  		{1,0,2,0,0,0,2,0,0,1}, 
-						  		{1,2,0,0,0,0,0,3,0,1}, 
-						  		{1,1,1,1,1,1,1,1,1,1}}; 
-	public static int curLevel;
-	public static Level[] levels = new Level[2];									
+	public static int[][] map1 = {{1,1,1,1,1,1,1,1,1,1}, 
+						  		  {1,2,0,0,0,0,0,0,2,1}, 
+						  		  {1,0,3,0,0,0,0,2,0,1}, 
+						  		  {1,0,0,2,0,0,3,0,0,1}, 
+						  		  {1,0,0,0,2,3,0,0,0,4}, 
+						  		  {1,0,0,0,2,0,0,0,0,5}, 
+						  		  {1,0,0,3,0,2,0,0,0,1}, 
+						  		  {1,0,2,0,0,0,2,0,0,1}, 
+						  		  {1,2,0,0,0,0,0,3,0,1}, 
+						  		  {1,1,1,1,1,1,1,1,1,1}}; 
+	public static int[][] map2 = {{1,1,1,1,1,1,1,1,1,1}, 
+  								  {1,0,0,0,0,0,0,0,0,1}, 
+  								  {1,0,0,0,0,0,0,0,0,1}, 
+  								  {1,0,0,0,0,0,0,0,0,1}, 
+  								  {1,0,0,0,0,0,0,0,0,4}, 
+  								  {1,0,0,0,0,0,0,0,0,5}, 
+  								  {1,0,0,0,0,0,0,0,0,1}, 
+  								  {1,0,0,0,0,0,0,0,0,1}, 
+  								  {1,0,0,0,0,0,0,0,0,1}, 
+  								  {1,1,1,1,1,1,1,1,1,1}}; 
+	public static int levelNum;
+	public static int[/*X*/][/*Y*/][/*lvlIndex*/] levels = new int[TileMap.worldSize[0]][TileMap.worldSize[1]][2];										
 	
+	public static void levelSetUp(int levelnum){
+		for (int l = 0; l < levelnum; l++) {
+			for (int x = 0; x < TileMap.worldSize[0]; x++) {
+				for (int y = 0; y < TileMap.worldSize[1]; y++) {
+					switch (l) {
+						case 0 :
+							levels[x][y][l] = map1[x][y];
+							break;
+						case 1 :
+							levels[x][y][l] = map2[x][y];
+							break;
+
+						default :
+							break;
+					}
+					
+				
+				}
+
+			}
+		}
+	}
 	public static void load(int loadLevel) {
 		
-		curLevel = loadLevel;
-		Level loadMap = levels[curLevel];
+		int [][]curMap = new int [TileMap.worldSize[0]][TileMap.worldSize[1]];
 		
-		for(int x = 0; x < TileMap.worldSize[0]; x++){
-			for(int y = 0; y < TileMap.worldSize[1]; y++){
-				
-				TileMap.setTile(x, y, loadMap.map[y][x]);
-				
+		for (int x = 0; x < TileMap.worldSize[0]; x++) {
+			for (int y = 0; y < TileMap.worldSize[1]; y++) {
+				curMap[x][y] = levels[y][x][loadLevel];
 			}
+
+		}
+		
+		for (int x = 0; x < TileMap.worldSize[0]; x++) {
+			for (int y = 0; y < TileMap.worldSize[1]; y++) {
+				TileMap.tileMap[x][y] = new Tile(x, y, curMap[x][y]);
+			}
+
 		}
 	}
 

@@ -42,7 +42,6 @@ public class Ball {
 
 		resetBall();
 
-		dir = 0;
 	}
 	public void Update() {
 		physics();
@@ -177,7 +176,7 @@ public class Ball {
 			}
 		} else if (colPoint.curTile.type == 5) {
 			resetBall();
-			Level.load(0);
+			Level.load(1);
 		}
 	}
 
