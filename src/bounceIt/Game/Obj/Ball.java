@@ -16,7 +16,7 @@ public class Ball {
 	double velX, velY;
 	int type; // 0 = green
 	int dir; // 0 = N, 1 = E, 2 = S, 3 = W
-	final double size = 16;
+	double size = 16;
 	Point colPoint;
 	Tile startTile = null;
 
@@ -92,6 +92,13 @@ public class Ball {
 		}
 
 		colPoint = new Point(posX, posY);
+		
+		if(colPoint.curTile.type != 0){
+			size = 40;
+		}
+		else{
+			size = 16;
+		}
 	}
 	private void colUpdate() {
 		if (colPoint.curTile.type == 1) {
@@ -177,6 +184,7 @@ public class Ball {
 		} else if (colPoint.curTile.type == 5) {
 			resetBall();
 			Level.curLevelIndex++;
+			System.out.println(Level.curLevelIndex);
 			Level.load(Level.curLevelIndex);
 		}
 	}
